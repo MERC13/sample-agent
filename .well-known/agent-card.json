@@ -1,0 +1,45 @@
+{
+  "protocolVersion": "0.3.0",
+  "name": "Multi-Capability A2A Agent",
+  "description": "A2A-compliant agent supporting LLM QA, tool usage, image understanding, web browsing, code execution, and memory",
+  "version": "1.0.0",
+  "url": "http://localhost:3000",
+  "preferredTransport": "JSONRPC",
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "stateTransitionHistory": true
+  },
+  "skills": [
+    {
+      "id": "general_qa",
+      "name": "General Question Answering",
+      "description": "Elementary math problems and general questions"
+    },
+    {
+      "id": "tool_execution",
+      "name": "Tool Execution",
+      "description": "SHA512 and MD5 hash operations in sequence"
+    },
+    {
+      "id": "image_understanding",
+      "name": "Image Understanding",
+      "description": "Analyze images and identify objects"
+    },
+    {
+      "id": "web_browsing",
+      "name": "Web Browsing",
+      "description": "Browse web and play tic-tac-toe"
+    },
+    {
+      "id": "code_execution",
+      "name": "Code Execution",
+      "description": "Generate and execute code, implement algorithms"
+    },
+    {
+      "id": "persistent_memory",
+      "name": "Persistent Memory",
+      "description": "Store and recall information across sessions"
+    }
+  ]
+}
