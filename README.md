@@ -2,7 +2,7 @@
 
 A minimal A2A-compliant JSON-RPC agent with:
 - LLM chat (Ollama)
-- Image understanding **must only return text, json format is rejected**
+- Image understanding (**must only return text, json format is rejected**)
 - Hash tool sequencing (md5/sha1/sha256/sha384/sha512)
 - Prime-sum shortcut (mod 1000)
 - Simple persistent number memory
