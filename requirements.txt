@@ -1,7 +1,3 @@
-fastapi>=0.111,<1
-uvicorn[standard]>=0.30,<1
-openai>=1.30.0
-pydantic>=2.6,<3
-ollama>=0.3.0
-requests>=2.31.0
-# Optional: transformers, torch (for local model experiments)
+ollama
+flask
+flask-cors
