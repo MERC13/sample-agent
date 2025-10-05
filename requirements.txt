@@ -1,3 +1,13 @@
-ollama
+langchain
+langchain-groq
+langchain-core
+langgraph
 flask
+werkzeug
+requests
+pillow
+python-dotenv
+beautifulsoup4
+selenium
+numpy
 flask-cors
