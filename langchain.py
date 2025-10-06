@@ -101,9 +101,36 @@ class A2AGroqAgent:
                 return f"Error in QA: {str(e)}"
         
         @tool
-        def hash_tool(text: str, algorithm: str = "sha256") -> str:
-            """Hash text using specified algorithm (md5, sha1, sha256, sha512)."""
+        def hash_tool(text: str, algorithm: str = "sha256", sequence: str = "") -> str:
+            """Hash text using specified algorithm (md5, sha1, sha256, sha512) or a sequence of algorithms.
+            
+            Args:
+                text: The input text to hash
+                algorithm: Single algorithm to use (md5, sha1, sha256, sha512)
+                sequence: Comma-separated sequence of algorithms to apply in order (e.g., "md5,sha512,md5,md5,md5,md5,md5")
+            """
             try:
+                # If sequence is provided, process it
+                if sequence:
+                    algorithms = [alg.strip().lower() for alg in sequence.split(',')]
+                    current_text = text
+                    
+                    for i, alg in enumerate(algorithms):
+                        text_bytes = current_text.encode('utf-8')
+                        if alg == "md5":
+                            current_text = hashlib.md5(text_bytes).hexdigest()
+                        elif alg == "sha1":
+                            current_text = hashlib.sha1(text_bytes).hexdigest()
+                        elif alg == "sha256":
+                            current_text = hashlib.sha256(text_bytes).hexdigest()
+                        elif alg == "sha512":
+                            current_text = hashlib.sha512(text_bytes).hexdigest()
+                        else:
+                            return f"Unsupported algorithm '{alg}' at position {i+1}. Supported: md5, sha1, sha256, sha512"
+                    
+                    return current_text
+                
+                # Single algorithm processing
                 text_bytes = text.encode('utf-8')
                 if algorithm.lower() == "md5":
                     return hashlib.md5(text_bytes).hexdigest()
@@ -283,6 +310,8 @@ class A2AGroqAgent:
                 "configurable": {"thread_id": session_id},
                 "recursion_limit": self.recursion_limit
             }
+            
+            print(f"DEBUG: Processing message ID {message_id} in session {session_id} with input: {user_input}")
             
             # Process with LangGraph agent using Groq
             response = self.agent.invoke(
